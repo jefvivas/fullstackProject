@@ -6,8 +6,12 @@ import {
   EditForm,
   ErrorMessageWrapper,
   InputContainer,
-  Tag,
   TagContainer,
+  Tag,
+  TagInputContainer,
+  TagInput,
+  AddTagButton,
+  RemoveTagButton,
 } from "./styles";
 import RequestButton from "../../../Components/RequestButton";
 import { Client } from "../../../Interfaces/client";
@@ -24,16 +28,14 @@ interface EditModalProps {
 const EditModal = ({ client, isOpen, closeModal }: EditModalProps) => {
   const [formData, setFormData] = useState<Client>(client);
   const [isLoading, setIsLoading] = useState(false);
+  const [newTag, setNewTag] = useState("");
 
   const { setClients } = useClient();
 
-  const isEnabled = (clientDataData: Client): boolean => {
-    if (!clientDataData.email || !clientDataData.name) return false;
+  const isEnabled = (clientData: Client): boolean => {
+    if (!clientData.email || !clientData.name) return false;
 
-    if (
-      !isEmailValid(clientDataData.email) ||
-      !isNameValid(clientDataData.name)
-    )
+    if (!isEmailValid(clientData.email) || !isNameValid(clientData.name))
       return false;
     return true;
   };
@@ -46,9 +48,26 @@ const EditModal = ({ client, isOpen, closeModal }: EditModalProps) => {
     }));
   };
 
-  const handleEditClient = (client: Client) => {
+  const handleAddTag = () => {
+    if (newTag && !formData.tags.includes(newTag)) {
+      setFormData((prevData) => ({
+        ...prevData,
+        tags: [...prevData.tags, newTag],
+      }));
+      setNewTag("");
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      tags: prevData.tags.filter((tag) => tag !== tagToRemove),
+    }));
+  };
+
+  const handleEditClient = async (client: Client) => {
     if (!isEnabled(client)) return;
-    editClient(client);
+    await editClient(client);
     closeModal();
   };
 
@@ -58,14 +77,14 @@ const EditModal = ({ client, isOpen, closeModal }: EditModalProps) => {
     }
   };
 
-  const handleEdit = (e: any) => {
+  const handleEdit = async (e: any) => {
     e.preventDefault();
 
     if (!isEnabled(formData)) return;
 
     setIsLoading(true);
 
-    handleEditClient(formData);
+    await handleEditClient(formData);
     setClients((existingClients) =>
       existingClients.map((client) =>
         client._id === formData._id ? formData : client
@@ -111,9 +130,28 @@ const EditModal = ({ client, isOpen, closeModal }: EditModalProps) => {
         </InputContainer>
         <TagContainer>
           {formData.tags?.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
+            <Tag key={index}>
+              {tag}
+              <RemoveTagButton
+                type="button"
+                onClick={() => handleRemoveTag(tag)}
+              >
+                x
+              </RemoveTagButton>
+            </Tag>
           ))}
         </TagContainer>
+        <TagInputContainer>
+          <TagInput
+            type="text"
+            value={newTag}
+            onChange={(e) => setNewTag(e.target.value)}
+            placeholder="Adicionar nova tag"
+          />
+          <AddTagButton type="button" onClick={handleAddTag}>
+            Adicionar
+          </AddTagButton>
+        </TagInputContainer>
         <RequestButton
           type="submit"
           isLoading={isLoading}

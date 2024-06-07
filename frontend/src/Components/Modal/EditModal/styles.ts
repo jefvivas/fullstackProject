@@ -71,3 +71,40 @@ export const Tag = styled.span`
   font-size: 12px;
   color: #333;
 `;
+
+export const RemoveTagButton = styled.button`
+  background: none;
+  border: none;
+  color: #eb4a46;
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+`;
+
+export const TagInputContainer = styled.div`
+  display: flex;
+  margin: 10px 0;
+`;
+
+export const TagInput = styled.input`
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  margin-right: 10px;
+`;
+
+export const AddTagButton = styled.button`
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;

@@ -7,7 +7,7 @@ export const editClient = async (client: Client) => {
     await axios.put(`http://localhost:1111/client/${client._id}`, {
       name: client.name,
       email: client.email,
-      tags: ["tag12", "tag23"],
+      tags: client.tags,
     });
     toast.success("Usuário editado com sucesso");
     return;
