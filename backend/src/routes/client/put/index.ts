@@ -15,8 +15,8 @@ route.put("/client/:id", async (req: Request, res: Response) => {
 
   if (!id) return res.status(400).send({ message: "id is required" });
 
-  const existingUser = await getClientById(id);
-  if (!existingUser)
+  const existingClient = await getClientById(id);
+  if (!existingClient)
     return res.status(400).send({ message: "user does not exist" });
 
   await updateClient(id, updatedClient);
