@@ -1,44 +1,41 @@
-import { deleteUser } from "../Services/DeleteClient";
-import { postUser } from "../Services/PostClient";
+import { deleteClient } from "../Services/DeleteClient";
+import { postClient } from "../Services/PostClient";
+import axios from "axios";
 
-import "jest-localstorage-mock";
+jest.mock("axios");
 
-describe("Test deleteUser function", () => {
-  const newUser = {
+describe("Test deleteClient function", () => {
+  const newClient = {
     name: "someName",
     email: "someMail",
-    phone: "11111111",
-    cpf: "12345678911",
   };
 
-  const nonExistingUSer = {
+  const nonExistingClient = {
     name: "notAName",
     email: "notAMail",
-    phone: "22222222",
-    cpf: "0000000000",
+    _id: "6662062d333422d36d18fd1d",
   };
 
-  it("should delete an user", () => {
-    postUser(newUser);
+  it("should delete an user", async () => {
+    const client = await postClient(newClient.name, newClient.email);
+    const { message } = await deleteClient(client._id);
 
-    const deleted = deleteUser(newUser);
-
-    expect(deleted).toEqual(newUser);
+    expect(message).toEqual("Client deleted");
   });
 
-  it("should not delete an user when not finding it", () => {
-    const deleted = deleteUser(nonExistingUSer);
+  it("should not delete an user when not finding it", async () => {
+    await deleteClient(nonExistingClient._id);
 
-    expect(deleted).toEqual({});
+    expect(deleteClient).toThrow();
   });
 
-  it("Should return an empty object when failing to delete an user", () => {
-    localStorage.clear();
-    jest.spyOn(localStorage, "getItem").mockImplementation(() => {
-      throw new Error("SomeError");
-    });
+  // it("Should return an empty object when failing to delete an user", () => {
+  //   localStorage.clear();
+  //   jest.spyOn(localStorage, "getItem").mockImplementation(() => {
+  //     throw new Error("SomeError");
+  //   });
 
-    const deletedUser = deleteUser(newUser);
-    expect(deletedUser).toEqual({});
-  });
+  //   const deletedUser = deleteUser(newUser);
+  //   expect(deletedUser).toEqual({});
+  // });
 });

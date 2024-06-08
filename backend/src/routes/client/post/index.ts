@@ -17,8 +17,8 @@ route.post("/client", async (req: Request, res: Response) => {
     return res.status(400).send({ message: "user already exists" });
 
   tags.push("new_user");
-  await insertClient({ name, email, tags });
-  return res.status(201).send({ message: "client created" });
+  const client = await insertClient({ name, email, tags });
+  return res.status(201).send({ message: "client created", client });
 });
 
 export default route;

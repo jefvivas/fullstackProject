@@ -1,0 +1,28 @@
+version: "3"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "1111:1111"
+    volumes:
+      - ./backend:/app
+    environment:
+      - NODE_ENV=development
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - NODE_ENV=development
+  mongo:
+    container_name: "clients-mongodb"
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb-data:/data/db/
+
+volumes:
+  mongodb-data:
