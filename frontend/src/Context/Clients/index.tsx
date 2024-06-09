@@ -22,18 +22,6 @@ interface ClientProviderProps {
 export function ClientProvider({ children }: ClientProviderProps) {
   const [clients, setClients] = useState<Client[]>([]);
 
-  useEffect(() => {
-    const fetchInitialClients = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const initialClients = await getAllClients();
-        setClients(initialClients);
-      }
-    };
-
-    fetchInitialClients();
-  }, []);
-
   return (
     <ClientContext.Provider value={{ clients, setClients }}>
       {children}

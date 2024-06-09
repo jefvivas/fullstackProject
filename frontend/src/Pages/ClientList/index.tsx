@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteModal from "../../Components/Modal/DeleteModal";
 import { useClient } from "../../Context/Clients";
 import {
@@ -14,12 +14,29 @@ import { Client } from "../../Interfaces/client";
 import { deleteClient } from "../../Services/DeleteClient";
 import EditModal from "../../Components/Modal/EditModal";
 import Navbar from "../../Components/Navbar";
+import { getAllClients } from "../../Services/GetClients";
 
 const ClientList = () => {
   const { clients, setClients } = useClient();
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!clients.length) {
+        try {
+          const fetchedClients = await getAllClients();
+          setClients(fetchedClients);
+        } catch (error) {
+          console.error("Error fetching clients:", error);
+        }
+      }
+    };
+
+    fetchData();
+  });
+
   const handleDeleteClick = (client: Client) => {
     setSelectedClient(client);
     setIsDeleteModalOpen(true);
