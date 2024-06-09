@@ -42,9 +42,9 @@ const AdminLogin = () => {
       password: adminData.password,
     });
 
-    if (token) {
-      localStorage.setItem("token", token);
-    }
+    if (!token) return;
+
+    localStorage.setItem("token", token);
 
     setAdminData({
       email: "",
