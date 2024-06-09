@@ -12,13 +12,13 @@ route.post("/client", async (req: Request, res: Response) => {
       .status(400)
       .send({ message: "name, email and tags are required" });
 
-  const existingUser = await getClientByEmail(email);
-  if (existingUser)
-    return res.status(400).send({ message: "user already exists" });
+  const existingClient = await getClientByEmail(email);
+  if (existingClient)
+    return res.status(400).send({ message: "Client already exists" });
 
-  tags.push("new_user");
+  tags.push("new_client");
   const client = await insertClient({ name, email, tags });
-  return res.status(201).send({ message: "client created", client });
+  return res.status(201).send({ message: "Client created", client });
 });
 
 export default route;

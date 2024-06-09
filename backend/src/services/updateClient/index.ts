@@ -1,15 +1,17 @@
 import { Client } from "../../database/models/ClientModel";
 import { IClient } from "../../types";
 
-const updateClient = async (id: string, client: IClient) => {
+const updateClient = async (id: string, client: IClient): Promise<string> => {
   try {
-    const newClient = await Client.updateOne(
+    const { modifiedCount } = await Client.updateOne(
       { _id: id },
       {
         $set: client,
       }
     );
-    return newClient;
+
+    if (modifiedCount === 0) return "Client not found";
+    return "Client updated";
   } catch (error) {
     throw new Error("Could not update client");
   }

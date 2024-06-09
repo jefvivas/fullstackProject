@@ -11,16 +11,16 @@ route.put("/client/:id", async (req: Request, res: Response) => {
   if (!updatedClient.name || !updatedClient.email || !updatedClient.tags)
     return res
       .status(400)
-      .send({ message: "name, email and tags are required" });
+      .send({ message: "Name, email and tags are required" });
 
-  if (!id) return res.status(400).send({ message: "id is required" });
+  if (!id) return res.status(400).send({ message: "Id is required" });
 
   const existingClient = await getClientById(id);
   if (!existingClient)
-    return res.status(400).send({ message: "user does not exist" });
+    return res.status(400).send({ message: "Client does not exist" });
 
   await updateClient(id, updatedClient);
-  return res.status(201).send({ message: "client updated" });
+  return res.status(201).send({ message: "Client updated" });
 });
 
 export default route;

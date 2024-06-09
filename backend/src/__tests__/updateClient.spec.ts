@@ -9,11 +9,18 @@ describe("updateClient tests", () => {
     tags: [],
   };
   test("teste positive case", async () => {
-    Client.updateOne = jest.fn().mockResolvedValue(mockedClient);
-    const updatedClient = await updateClient(mockedClient._id, mockedClient);
-    expect(updatedClient).toBe(mockedClient);
+    Client.updateOne = jest.fn().mockResolvedValue({ modifiedCount: 1 });
+    const response = await updateClient(mockedClient._id, mockedClient);
+    expect(response).toBe("Client updated");
   });
 
+  test("test when no client is found case", async () => {
+    const desiredResponse = "Client not found";
+
+    Client.updateOne = jest.fn().mockResolvedValue({ modifiedCount: 0 });
+    const response = await updateClient(mockedClient._id, mockedClient);
+    expect(response).toBe(desiredResponse);
+  });
   test("test negative case", async () => {
     Client.updateOne = jest.fn().mockRejectedValueOnce(new Error());
 

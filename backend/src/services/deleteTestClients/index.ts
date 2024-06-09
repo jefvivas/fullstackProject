@@ -1,6 +1,6 @@
 import { Client } from "../../database/models/ClientModel";
 
-const deleteTestClients = async () => {
+const deleteTestClients = async (): Promise<string> => {
   try {
     const { deletedCount } = await Client.deleteMany({
       tags: { $in: ["test_client"] },

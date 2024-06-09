@@ -1,6 +1,7 @@
 import { Client } from "../../database/models/ClientModel";
+import { IClient } from "../../types";
 
-const getClientByEmail = async (email: string) => {
+const getClientByEmail = async (email: string): Promise<IClient | null> => {
   try {
     const clients = await Client.findOne({ email });
     return clients;
