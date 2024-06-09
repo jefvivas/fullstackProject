@@ -8,11 +8,7 @@ export interface IClient {
   updatedAt?: Date;
 }
 
-export interface IGetClientByEmail extends Document {
-  _id: string;
-  name: string;
+export interface IAdmin {
   email: string;
-  tags: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  password: string;
 }
