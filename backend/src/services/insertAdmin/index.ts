@@ -1,6 +1,6 @@
 import { Admin } from "../../database/models/AdminModel";
 import { IAdmin } from "../../types";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const insertClient = async (admin: IAdmin): Promise<IAdmin> => {
   try {

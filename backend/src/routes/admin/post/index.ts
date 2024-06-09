@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import getAdminByEmail from "../../../services/getAdminByEmail";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const route = Router();
