@@ -19,8 +19,8 @@ route.put("/client/:id", async (req: Request, res: Response) => {
   if (!existingClient)
     return res.status(400).send({ message: "Client does not exist" });
 
-  await updateClient(id, updatedClient);
-  return res.status(201).send({ message: "Client updated" });
+  const message = await updateClient(id, updatedClient);
+  return res.status(201).send({ message });
 });
 
 export default route;
