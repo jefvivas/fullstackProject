@@ -27,7 +27,7 @@ route.post("/admin", async (req: Request, res: Response) => {
 
     const { _id } = user;
 
-    const token = jwt.sign({ _id, email }, password, { expiresIn: "1d" });
+    const token = jwt.sign({ _id, email }, "secret", { expiresIn: "1d" });
 
     return res.send({ token });
   } catch (error) {

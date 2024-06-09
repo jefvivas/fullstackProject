@@ -1,5 +1,6 @@
 import { deleteClient } from "../Services/DeleteClient";
 import axios from "axios";
+import "jest-localstorage-mock";
 
 describe("Test deleteClient function", () => {
   const existingClient = {

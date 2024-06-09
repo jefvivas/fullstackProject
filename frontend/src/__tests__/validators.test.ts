@@ -1,4 +1,9 @@
-import { isNameValid, isEmailValid } from "../Utils/Validators";
+import {
+  isNameValid,
+  isEmailValid,
+  isPasswordValid,
+} from "../Utils/Validators";
+import "jest-localstorage-mock";
 
 describe("testing name validator for input color", () => {
   it("should return true when receiving a name with 3 or more letters", () => {
@@ -9,6 +14,18 @@ describe("testing name validator for input color", () => {
   it("should return false when receiving an invalid name", () => {
     const invalidName = isNameValid("Ye");
     expect(invalidName).toBe(false);
+  });
+});
+
+describe("testing password validator for input color", () => {
+  it("should return true when receiving a password with 3 or more letters", () => {
+    const validPassword = isPasswordValid("Password");
+    expect(validPassword).toBe(true);
+  });
+
+  it("should return false when receiving an invalid password", () => {
+    const invalidPassword = isPasswordValid("PA");
+    expect(invalidPassword).toBe(false);
   });
 });
 

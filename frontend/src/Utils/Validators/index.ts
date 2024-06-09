@@ -9,3 +9,8 @@ export const isEmailValid = (email: string): boolean => {
   if (email && !validator.isEmail(email)) return false;
   return true;
 };
+
+export const isPasswordValid = (password: string): boolean => {
+  if (password.length && password.length < 3) return false;
+  return true;
+};

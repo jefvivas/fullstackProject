@@ -31,7 +31,7 @@ const ClientSignUp = () => {
   };
 
   const handleSignUp = async (name: string, email: string) => {
-    if (!isEnabled(name, email)) return;
+    if (!isEnabled()) return;
     const newClient = await postClient({
       name: clientData.name,
       email: clientData.email,
@@ -44,7 +44,7 @@ const ClientSignUp = () => {
     setClients((prevClients) => [...prevClients, newClient]);
   };
 
-  const isEnabled = (name: string, email: string): boolean => {
+  const isEnabled = (): boolean => {
     if (!clientData.email || !clientData.name) return false;
 
     if (!isEmailValid(clientData.email) || !isNameValid(clientData.name))
@@ -55,7 +55,7 @@ const ClientSignUp = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!isEnabled(clientData.name, clientData.email)) return;
+    if (!isEnabled()) return;
 
     setIsLoading(true);
 
@@ -104,7 +104,7 @@ const ClientSignUp = () => {
             type="submit"
             isLoading={isLoading}
             text="Cadastrar"
-            isEnabled={isEnabled(clientData.name, clientData.email)}
+            isEnabled={isEnabled()}
           />
         </LoginForm>
       </LoginContainer>

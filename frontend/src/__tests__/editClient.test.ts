@@ -1,6 +1,7 @@
 import { Client } from "../Interfaces/client";
 import { editClient } from "../Services/EditClient";
 import axios from "axios";
+import "jest-localstorage-mock";
 
 describe("Test editClient function", () => {
   const clientToEdit: Client = {

@@ -24,8 +24,11 @@ export function ClientProvider({ children }: ClientProviderProps) {
 
   useEffect(() => {
     const fetchInitialClients = async () => {
-      const initialClients = await getAllClients();
-      setClients(initialClients);
+      const token = localStorage.getItem("token");
+      if (token) {
+        const initialClients = await getAllClients();
+        setClients(initialClients);
+      }
     };
 
     fetchInitialClients();

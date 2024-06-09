@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DeleteModal from "../../Components/Modal/DeleteModal";
 import { useClient } from "../../Context/Clients";
 import {
@@ -24,7 +24,6 @@ const ClientList = () => {
     setSelectedClient(client);
     setIsDeleteModalOpen(true);
   };
-
   const handleEditClick = (client: Client) => {
     setSelectedClient(client);
     setIsEditModalOpen(true);

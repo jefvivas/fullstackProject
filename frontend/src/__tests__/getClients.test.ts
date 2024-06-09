@@ -1,5 +1,6 @@
 import { getAllClients } from "../Services/GetClients";
 import axios from "axios";
+import "jest-localstorage-mock";
 
 describe("Test getUsersFromLocalStorage function", () => {
   it("should retrieve the existing clients from database", async () => {

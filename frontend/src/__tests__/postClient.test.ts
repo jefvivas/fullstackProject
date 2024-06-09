@@ -1,5 +1,6 @@
 import { postClient } from "../Services/PostClient";
 import axios from "axios";
+import "jest-localstorage-mock";
 
 describe("Test postClient function", () => {
   const newClientInput = {

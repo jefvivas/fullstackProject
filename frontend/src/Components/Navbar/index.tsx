@@ -6,7 +6,7 @@ const Navbar = () => {
     <NavbarContainer>
       <NavList>
         <NavItem>
-          <NavLink to="/">Criar Client</NavLink>
+          <NavLink to="/client-signup">Criar Client</NavLink>
           <NavLink to="/clients">Todos Clientes</NavLink>
         </NavItem>
       </NavList>

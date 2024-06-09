@@ -6,11 +6,19 @@ export const postClient = async (
   client: PostClientInput
 ): Promise<PostClientOutput> => {
   try {
-    const { data } = await axios.post(`http://localhost:1111/client`, {
-      name: client.name,
-      email: client.email,
-      tags: [],
-    });
+    const token = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const { data } = await axios.post(
+      `http://localhost:1111/client`,
+      {
+        name: client.name,
+        email: client.email,
+        tags: [],
+      },
+      { headers }
+    );
     toast.success("Cliente criado com sucesso");
 
     return data.client;
