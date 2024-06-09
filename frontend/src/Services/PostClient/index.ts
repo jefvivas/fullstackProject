@@ -1,22 +1,22 @@
 import { toast } from "react-toastify";
-import { Client } from "../../Interfaces/client";
+import { PostClientInput, PostClientOutput } from "../../Interfaces/client";
 import axios from "axios";
 
 export const postClient = async (
-  name: string,
-  email: string
-): Promise<Client> => {
+  client: PostClientInput
+): Promise<PostClientOutput> => {
   try {
-    const response = await axios.post(`http://localhost:1111/client`, {
-      name,
-      email,
+    const { data } = await axios.post(`http://localhost:1111/client`, {
+      name: client.name,
+      email: client.email,
       tags: [],
     });
-    toast.success("Client criado com sucesso");
+    toast.success("Cliente criado com sucesso");
 
-    return response.data.client as Client;
+    return data.client;
   } catch (error: any) {
-    console.error(error);
-    return {} as Client;
+    toast.success("Erro ao criar cliente");
+
+    return {} as PostClientOutput;
   }
 };

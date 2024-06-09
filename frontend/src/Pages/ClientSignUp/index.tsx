@@ -32,7 +32,10 @@ const ClientSignUp = () => {
 
   const handleSignUp = async (name: string, email: string) => {
     if (!isEnabled(name, email)) return;
-    const newClient = await postClient(clientData.name, clientData.email);
+    const newClient = await postClient({
+      name: clientData.name,
+      email: clientData.email,
+    });
     setClientData({
       name: "",
       email: "",

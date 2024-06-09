@@ -1,7 +1,14 @@
 import axios from "axios";
-import { Client } from "../../Interfaces/client";
+import { toast } from "react-toastify";
+import { GetClientsOutput } from "../../Interfaces/client";
 
-export const getAllClients = async (): Promise<Client[]> => {
-  const response = await axios.get("http://localhost:1111/client");
-  return response.data.clients;
+export const getAllClients = async (): Promise<GetClientsOutput[]> => {
+  try {
+    const { data } = await axios.get("http://localhost:1111/client");
+    return data.clients;
+  } catch (error: any) {
+    toast.error("Erro ao receber cliente");
+
+    return {} as GetClientsOutput[];
+  }
 };
