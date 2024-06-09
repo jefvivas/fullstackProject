@@ -37,7 +37,10 @@ const AdminLogin = () => {
   const handleSignIn = async (email: string, password: string) => {
     if (!isEnabled()) return;
 
-    const token = await logAdmin(adminData.email, adminData.password);
+    const token = await logAdmin({
+      email: adminData.email,
+      password: adminData.password,
+    });
 
     if (token) {
       localStorage.setItem("token", token);
