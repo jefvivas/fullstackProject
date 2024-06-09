@@ -6,8 +6,8 @@ const Navbar = () => {
     <NavbarContainer>
       <NavList>
         <NavItem>
-          <NavLink to="/">Criar Usuário</NavLink>
-          <NavLink to="/users">Todos Usuários</NavLink>
+          <NavLink to="/">Criar Client</NavLink>
+          <NavLink to="/clients">Todos Clientes</NavLink>
         </NavItem>
       </NavList>
     </NavbarContainer>

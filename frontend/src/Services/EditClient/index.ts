@@ -9,7 +9,7 @@ export const editClient = async (client: Client) => {
       email: client.email,
       tags: client.tags,
     });
-    toast.success("Usuário editado com sucesso");
+    toast.success("Cliente editado com sucesso");
     return;
   } catch (error: any) {
     console.error(error);

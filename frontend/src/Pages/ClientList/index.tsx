@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import DeleteModal from "../../Components/Modal/DeleteModal";
 import { useClient } from "../../Context/Clients";
 import {
-  UserCardContainer,
-  UserName,
-  UserInfo,
-  UserListContainer,
+  ClientCardContainer,
+  ClientName,
+  ClientInfo,
+  ClientListContainer,
   DeleteButton,
   EditButton,
 } from "./styles";
@@ -15,7 +15,7 @@ import { deleteClient } from "../../Services/DeleteClient";
 import EditModal from "../../Components/Modal/EditModal";
 import Navbar from "../../Components/Navbar";
 
-const UserList = () => {
+const ClientList = () => {
   const { clients, setClients } = useClient();
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -24,7 +24,6 @@ const UserList = () => {
     setSelectedClient(client);
     setIsDeleteModalOpen(true);
   };
-
 
   const handleEditClick = (client: Client) => {
     setSelectedClient(client);
@@ -56,11 +55,11 @@ const UserList = () => {
   return (
     <>
       <Navbar />
-      <UserListContainer>
+      <ClientListContainer>
         {clients && (
           <>
             {clients.map((client) => (
-              <UserCardContainer key={client._id}>
+              <ClientCardContainer key={client._id}>
                 <DeleteButton onClick={() => handleDeleteClick(client)}>
                   <MdDelete />
                 </DeleteButton>
@@ -84,15 +83,15 @@ const UserList = () => {
                       closeModal={toggleEditModal}
                     />
                   )}
-                <UserName>{client.name}</UserName>
-                <UserInfo>Email: {client.email}</UserInfo>
-              </UserCardContainer>
+                <ClientName>{client.name}</ClientName>
+                <ClientInfo>Email: {client.email}</ClientInfo>
+              </ClientCardContainer>
             ))}
           </>
         )}
-      </UserListContainer>
+      </ClientListContainer>
     </>
   );
 };
 
-export default UserList;
+export default ClientList;

@@ -6,6 +6,7 @@ export const deleteClient = async (clientId: string): Promise<any> => {
     const response = await axios.delete(
       `http://localhost:1111/client/${clientId}`
     );
+    toast.success("Cliente deletado com sucesso");
     return response.data;
   } catch (error: any) {
     if (error.response && error.response.status === 400) {

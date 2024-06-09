@@ -12,7 +12,7 @@ interface DeleteModalProps {
 const DeleteModal = ({ onCancel, onConfirm }: DeleteModalProps) => {
   return (
     <ModalContainer>
-      <ModalText>Deseja realmente excluir este usuário?</ModalText>
+      <ModalText>Deseja realmente excluir este client?</ModalText>
       <ModalButtonsContainer>
         <ModalButton isDeleteButton onClick={onConfirm}>
           Sim

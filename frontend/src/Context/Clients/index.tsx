@@ -19,16 +19,16 @@ interface ClientProviderProps {
   children: ReactNode;
 }
 
-export function UserProvider({ children }: ClientProviderProps) {
+export function ClientProvider({ children }: ClientProviderProps) {
   const [clients, setClients] = useState<Client[]>([]);
 
   useEffect(() => {
-    const fetchInitialUsers = async () => {
-      const initialUsers = await getAllClients();
-      setClients(initialUsers);
+    const fetchInitialClients = async () => {
+      const initialClients = await getAllClients();
+      setClients(initialClients);
     };
 
-    fetchInitialUsers();
+    fetchInitialClients();
   }, []);
 
   return (
@@ -41,7 +41,7 @@ export function UserProvider({ children }: ClientProviderProps) {
 export function useClient() {
   const context = useContext(ClientContext);
   if (!context) {
-    throw new Error("useClient must be used within a UserProvider");
+    throw new Error("useClient must be used within a ClientProvider");
   }
   return context;
 }

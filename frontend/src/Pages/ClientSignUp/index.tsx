@@ -30,9 +30,15 @@ const ClientSignUp = () => {
     }));
   };
 
-  const handleSignUp = (name: string, email: string) => {
+  const handleSignUp = async (name: string, email: string) => {
     if (!isEnabled(name, email)) return;
-    postClient(clientData.name, clientData.email);
+    const newClient = await postClient(clientData.name, clientData.email);
+    setClientData({
+      name: "",
+      email: "",
+    });
+
+    setClients((prevClients) => [...prevClients, newClient]);
   };
 
   const isEnabled = (name: string, email: string): boolean => {
@@ -59,7 +65,7 @@ const ClientSignUp = () => {
       <Navbar />
       <LoginContainer>
         <LoginForm onSubmit={handleSubmit}>
-          <h2>Cadastrar Usuário</h2>
+          <h2>Cadastrar Cliente</h2>
           <InputContainer>
             <InputField
               type="text"

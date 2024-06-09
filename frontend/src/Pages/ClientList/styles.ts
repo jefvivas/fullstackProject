@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UserCardContainer = styled.div`
+export const ClientCardContainer = styled.div`
   position: relative;
   background-color: #ffffff;
   width: 300px;
@@ -41,18 +41,18 @@ export const EditButton = styled.button`
   transition: background-color 0.3s ease;
 `;
 
-export const UserName = styled.h3`
+export const ClientName = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 5px;
 `;
 
-export const UserInfo = styled.p`
+export const ClientInfo = styled.p`
   margin: 5px 0;
   font-size: 0.9rem;
   color: #555555;
 `;
 
-export const UserListContainer = styled.div`
+export const ClientListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
