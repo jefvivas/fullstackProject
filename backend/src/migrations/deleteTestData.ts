@@ -3,7 +3,7 @@ import deleteTestClients from "../services/deleteTestClients";
 
 const connectDatabase = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1/clients");
+    await mongoose.connect("mongodb://mongo/clients");
     console.log("DB ONLINE");
   } catch (error) {
     console.error("Error connecting to database", error);

@@ -2,7 +2,7 @@
 
 A partir da pasta raíz do projeto, utilize do comando "docker compose up --build" para que levante containers para todo o projeto, no caso, backend, banco de dados( MongoDB) e frontend.
 
-Caso queira realizar os testes sem a utilização do docker, basta na url de conexão com o banco retirar o "mongo" de "mongodb://mongo/clients" e colocar, por padrão "mongodb://127.0.0.1/clients".
+Caso queira realizar os testes sem a utilização do docker, basta nas urls de conexão com o banco retirar o "mongo" de "mongodb://mongo/clients" e colocar, por padrão "mongodb://127.0.0.1/clients".
 
 Além disso, deverá utiliar os comandos "yarn start" e "yarn dev" nos diretórios do frontend e backend, respectivamente. Caso esteja rodando pelo docker, esse processo será automático.
 
