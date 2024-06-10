@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
-
+import jwtVerifier from "../utils/jwtVerifier";
 const tokenAuthorization = (
   req: Request,
   res: Response,
@@ -18,7 +17,7 @@ const tokenAuthorization = (
     if (!token) {
       res.status(401).send({ message: "Login Required" });
     }
-    jwt.verify(token, "secret");
+    jwtVerifier(token);
 
     next();
   } catch (error) {

@@ -1,8 +1,8 @@
 import { Request, Response, Router } from "express";
 import getAdminByEmail from "../../../services/getAdminByEmail";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import emailValidator from "../../../utils/emailValidator";
+import hashChecker from "../../../utils/hashChecker";
+import jwtSigner from "../../../utils/jwtSigner";
 
 const route = Router();
 
@@ -26,11 +26,11 @@ route.post("/admin", async (req: Request, res: Response) => {
     }
 
     const user = await getAdminByEmail(email);
-    if (!user) {
+    if (!user || !user._id) {
       return res.status(400).send({ message: "Admin not found." });
     }
 
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!hashChecker(password, user.password)) {
       return res
         .status(401)
         .send({ message: "email or password is not valid." });
@@ -38,7 +38,7 @@ route.post("/admin", async (req: Request, res: Response) => {
 
     const { _id } = user;
 
-    const token = jwt.sign({ _id, email }, "secret", { expiresIn: "1d" });
+    const token = jwtSigner(_id, email);
 
     return res.send({ token });
   } catch (error) {
