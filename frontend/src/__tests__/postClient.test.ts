@@ -36,6 +36,6 @@ describe("Test postClient function", () => {
       email: newClientInput.email,
     });
 
-    expect(response).toEqual({});
+    expect(response).toEqual(null);
   });
 });

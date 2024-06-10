@@ -110,7 +110,7 @@ const AdminLogin = () => {
           <RequestButton
             type="submit"
             isLoading={isLoading}
-            text="Cadastrar"
+            text="Logar"
             isEnabled={isEnabled()}
           />
         </LoginForm>

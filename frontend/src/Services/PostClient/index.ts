@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const postClient = async (
   client: PostClientInput
-): Promise<PostClientOutput> => {
+): Promise<PostClientOutput | null> => {
   try {
     const token = localStorage.getItem("token");
     const headers = {
@@ -23,8 +23,8 @@ export const postClient = async (
 
     return data.client;
   } catch (error: any) {
-    toast.success("Erro ao criar cliente");
+    toast.error("Erro ao criar cliente");
 
-    return {} as PostClientOutput;
+    return null;
   }
 };

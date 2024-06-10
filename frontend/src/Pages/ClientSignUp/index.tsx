@@ -36,6 +36,8 @@ const ClientSignUp = () => {
       name: clientData.name,
       email: clientData.email,
     });
+
+    if (!newClient) return;
     setClientData({
       name: "",
       email: "",
