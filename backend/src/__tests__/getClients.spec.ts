@@ -15,8 +15,8 @@ describe("GetClients tests", () => {
         },
         {
           _id: "666493bb6c91b59ce28d1e48",
-          name: "someNdame",
-          email: "someM3ail",
+          name: "someName",
+          email: "someMail@mail.com",
           tags: ["new_client"],
           createdAt: "2024-06-08T17:24:11.281Z",
           updatedAt: "2024-06-08T17:24:11.281Z",

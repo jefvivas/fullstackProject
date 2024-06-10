@@ -1,6 +1,7 @@
 import { Response, Request, Router } from "express";
 import getClientById from "../../../services/getClientById";
 import updateClient from "../../../services/updateClient";
+import emailValidator from "../../../utils/emailValidator";
 
 const route = Router();
 
@@ -14,6 +15,14 @@ route.put("/client/:id", async (req: Request, res: Response) => {
       .send({ message: "Name, email and tags are required" });
 
   if (!id) return res.status(400).send({ message: "Id is required" });
+
+  if (updatedClient.name.length < 3)
+    return res
+      .status(400)
+      .send({ message: "Name must be at least 3 characters long" });
+
+  if (!emailValidator(updatedClient.email))
+    return res.status(400).send({ message: "Email is not valid" });
 
   const existingClient = await getClientById(id);
   if (!existingClient)

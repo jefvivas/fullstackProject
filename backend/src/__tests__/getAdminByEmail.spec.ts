@@ -3,7 +3,7 @@ import { Admin } from "../database/models/AdminModel";
 
 describe("GetAdminByEmail tests", () => {
   const mockedAdmin = {
-    email: "someM3ail",
+    email: "someMail@mail.com",
     password: "somePass",
   };
   test("teste positive case", async () => {

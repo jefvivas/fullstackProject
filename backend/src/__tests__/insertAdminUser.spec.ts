@@ -3,12 +3,12 @@ import { Admin } from "../database/models/AdminModel";
 
 describe("InsertAdmin tests", () => {
   const mockedAdminInput = {
-    email: "someMail",
+    email: "someMail@mail.com",
     password: "somePass",
   };
 
   const mockedAdminOutput = {
-    email: "someMail",
+    email: "someMail@mail.com ",
     password: "hashedPassword",
   };
 

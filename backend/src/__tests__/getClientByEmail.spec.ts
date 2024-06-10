@@ -4,9 +4,9 @@ import { Client } from "../database/models/ClientModel";
 describe("GetClientByEmail tests", () => {
   const mockedClient = {
     _id: "666493b46c91b59ce28d1e45",
-    name: "someNdame",
-    email: "someM3ail",
-    tags: ["fd3f"],
+    name: "someName",
+    email: "someMail@mail.com",
+    tags: ["some_tag"],
     createdAt: "2024-06-08T17:24:04.422Z",
     updatedAt: "2024-06-08T17:43:52.787Z",
   };

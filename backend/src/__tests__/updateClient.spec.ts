@@ -5,7 +5,7 @@ describe("updateClient tests", () => {
   const mockedClient = {
     _id: "666493b46c91b59ce28d1e45",
     name: "someName",
-    email: "someMail",
+    email: "someMail@mail.com",
     tags: [],
   };
   test("teste positive case", async () => {

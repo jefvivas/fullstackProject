@@ -4,5 +4,5 @@ module.exports = {
     "^.+\\.(ts|tsx)?$": "ts-jest",
     "^.+\\.(js|jsx)$": "babel-jest",
   },
-  collectCoverageFrom: ["src/services/*/*.ts"],
+  collectCoverageFrom: ["src/services/*/*.ts", "src/utils/*.ts"],
 };
