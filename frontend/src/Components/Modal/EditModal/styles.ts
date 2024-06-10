@@ -25,6 +25,9 @@ export const EditForm = styled.form`
   border-radius: 5px;
   background-color: #f8f8f8;
   z-index: 9999;
+  max-height: 80vh;
+  overflow-y: auto;
+  max-width: 400px;
 `;
 
 export const InputField = styled.input<InputProps>`
@@ -55,6 +58,8 @@ export const ErrorMessage = styled.span`
 export const InputContainer = styled.div`
   position: relative;
   height: 55px;
+  max-height: 150px;
+  overflow-y: auto;
 `;
 
 export const TagContainer = styled.div`
@@ -65,7 +70,7 @@ export const TagContainer = styled.div`
 `;
 
 export const Tag = styled.span`
-  background-color: #e0e0e0;
+  background-color: #007bff3f;
   border-radius: 15px;
   padding: 5px 10px;
   font-size: 12px;

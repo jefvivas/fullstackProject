@@ -12,7 +12,7 @@ app.use(routes);
 const port = 1111;
 
 mongoose
-  .connect("mongodb://mongo/clients")
+  .connect("mongodb://127.0.0.1/clients")
   .then(() => console.log("DB ONLINE"));
 
 app.listen(port, () => {

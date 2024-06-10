@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const ClientCardContainer = styled.div`
   position: relative;
   background-color: #ffffff;
-  width: 300px;
-  margin: 0 10px 20px 10px;
+  width: 100%;
+  max-width: 320px;
+  margin: 10px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -53,9 +54,18 @@ export const ClientInfo = styled.p`
 `;
 
 export const ClientListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
   padding: 5% 10px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
